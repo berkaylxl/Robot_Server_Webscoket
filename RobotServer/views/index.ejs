@@ -3,36 +3,42 @@
 <head>
 	<title>NodeJSRobot</title>
     <link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<nav>
-		<a href="#">Robot Controller</a>
-		<a href="#">About</a>
-		<a href="#">Contact</a>
+		<a href="#"> <i class="fa-solid fa-robot"></i> Robot Controller</a>
+		<a href="#"></a>
+		<a href="#"> Berkaycan & Candaş</a>
 	</nav>
 	<div class="container">
-		<div class="frame">
-			<div id="unity-container" class="unity-desktop">
-				<canvas id="unity-canvas" width=100 height=100></canvas>
-				<div id="unity-loading-bar">
-				  <div id="unity-logo"></div>
-				  <div id="unity-progress-bar-empty">
-					<div id="unity-progress-bar-full"></div>
-				  </div>
-				</div>
-				<div id="unity-warning"> </div>
-				<div id="unity-footer">
-				  <div id="unity-webgl-logo"></div>
-				  <div id="unity-fullscreen-button"></div>
-				</div>
-			  </div>
+		 <div class="frame">
+			<iframe src="http://127.0.0.1/receiver/index.html" width="100%" height="100%" scrolling="no"></iframe>
+		</div> 
+	</div>
+
+	<div class="buttons">
+		<div class="console">
+			<button class="arrow-button" id="up-button">&#8593;</button> <!-- Up arrow -->
+		<div class="button-row">
+			<button class="arrow-button" id="left-button">&#8592;</button> <!-- Left arrow -->
+			<button class="arrow-button" id="down-button">&#8595;</button> <!-- Down arrow -->
+			<button class="arrow-button" id="right-button">&#8594;</button> <!-- Right arrow -->
+		</div>
+		<div class="button-row">
+			<button class="arrow-button" id="brake-button">Brake</button> <!-- Right arrow -->
 		</div>
 	</div>
-	<div class="buttons">
-		<button class="arrow-button" id="left-button">&#8592;</button> <!-- Left arrow -->
-		<button class="arrow-button" id="up-button">&#8593;</button> <!-- Up arrow -->
-		<button class="arrow-button" id="right-button">&#8594;</button> <!-- Right arrow -->
-		<button class="arrow-button" id="down-button">&#8595;</button> <!-- Down arrow -->
+	<div class="properties">
+		<div class="button-row">
+			<button class="arrow-button" id="camera-button"><i class="fa-solid fa-video"></i> (C)</button> <!-- Left arrow -->
+			<button class="arrow-button" id="test-button"><i class="fa-solid fa-microchip"></i> (T)</button> <!-- Down arrow -->
+		</div>
+		<div class="button-row">
+			<button class="arrow-button" id="charge-button"><i class="fa-solid fa-charging-station"></i> (R)</button> <!-- Left arrow -->
+			<button class="arrow-button" id="headlamp-button"><i class="fa-solid fa-lightbulb"></i> (L)</button> <!-- Down arrow -->
+		</div>
+	</div>
 	</div>
     <script src="script.js"></script>
 </body>

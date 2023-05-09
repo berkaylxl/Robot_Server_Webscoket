@@ -19,14 +19,13 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
-    margin-top: 50px;
+    height: 630px;
+    margin-top: 5px;
 }
 
 .frame {
-    border: 2px dashed #ccc;
-    height: 300px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,14 +35,20 @@ nav a {
     opacity: 0.3;
 }
 
-.buttons {
-    margin-top: 30px;
+.buttons{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-.buttons button {
+.console {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.console button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -54,8 +59,32 @@ nav a {
     margin: 0 10px;
     cursor: pointer;
 }
+.properties button{
+    width: 100px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.properties{
+    margin-left:50px;
+}
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
 .arrow-button.red {
     background-color: red;
     color: white;
     box-shadow: 5px 3px 20px 1px black;
+}
+#brake-button{
+    border-radius: 30px;
+    width: 200px;
 }
