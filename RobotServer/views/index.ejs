@@ -13,7 +13,7 @@
 	</nav>
 	<div class="container">
 		 <div class="frame">
-			<iframe src="http://127.0.0.1/receiver/index.html" width="100%" height="100%" scrolling="no"></iframe>
+			<iframe id="myframe" src="http://127.0.0.1/receiver/index.html" width="100%" height="100%"></iframe>
 		</div> 
 	</div>
 
@@ -25,9 +25,7 @@
 			<button class="arrow-button" id="down-button">&#8595;</button> <!-- Down arrow -->
 			<button class="arrow-button" id="right-button">&#8594;</button> <!-- Right arrow -->
 		</div>
-		<div class="button-row">
-			<button class="arrow-button" id="brake-button">Brake</button> <!-- Right arrow -->
-		</div>
+		
 	</div>
 	<div class="properties">
 		<div class="button-row">
@@ -40,6 +38,7 @@
 		</div>
 	</div>
 	</div>
+	<video id="renderStreamVideo" autoplay></video>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
+const EventEmitter = require('events');
+
+//const eventEmitter = new EventEmitter();
 
 exports.robot_forward = (req, res, next) => {
     wss.clients.forEach(client => {
@@ -83,5 +86,60 @@ exports.robot_turn_left_stop = (req, res, next) => {
     console.log(client._eventsCount)
   });
   console.log("dur (sola)");
-  res.status(200).json({message:'Turn Left Sola isteği gönderildi'});
+  res.status(200).json({message:'Turn Left Stop isteği gönderildi'});
+}
+
+exports.robot_brake = (req, res, next) => {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send('brake');
+    }
+    console.log(client._eventsCount)
+  });
+  console.log("fren");
+  res.status(200).json({message:'Brake isteği gönderildi'});
+}
+
+exports.robot_brake_stop = (req, res, next) => {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send('brakestop');
+    }
+    console.log(client._eventsCount)
+  });
+  console.log("dur (fren)");
+  res.status(200).json({message:'Brake Stop isteği gönderildi'});
+}
+
+exports.robot_camera = (req, res, next) => {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send('camera');
+    }
+    console.log(client._eventsCount)
+  });
+  console.log("camera");
+  res.status(200).json({message:'Camera isteği gönderildi'});
+}
+
+exports.robot_headlamp = (req, res, next) => {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send('headlamp');
+    }
+    console.log(client._eventsCount)
+  });
+  console.log("headlamp");
+  //wss.on('message', (message) => {
+  //  console.log('Gelen mesaj:', message);
+  //  if (message === 'headlampon') {
+  //    // Far açılma işlemini gerçekleştirin
+  //    console.log('Farlar açıldı');
+  //  }
+  //  else if(message === 'headlampoff'){
+  //    console.log('Farlar kapatıldı');
+  //  }
+  //  eventEmitter.emit('headlampMessage', message);
+  //});
+  res.status(200).json({message:'Headlamp isteği gönderildi'});
 }

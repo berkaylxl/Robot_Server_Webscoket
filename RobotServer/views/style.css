@@ -19,7 +19,7 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 630px;
+    height: 700px;
     margin-top: 5px;
 }
 
@@ -81,6 +81,11 @@ nav a {
 }
 .arrow-button.red {
     background-color: red;
+    color: white;
+    box-shadow: 5px 3px 20px 1px black;
+}
+.arrow-button.green {
+    background-color: green;
     color: white;
     box-shadow: 5px 3px 20px 1px black;
 }
