@@ -1,7 +1,7 @@
 nav {
     background-color: #333;
     color: white;
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,16 +19,42 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 700px;
-    margin-top: 5px;
-}
 
+    height: 630px;
+    margin-top: 50px;
+   
+}
+.leftDiv{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between ;
+    margin-left: 10px;
+}
+.allCharts{
+    border-radius: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    box-shadow: 1px 1px 1px 5px grey;
+    padding: 3px;
+}
+.topCharts{
+    background-color: #333;
+    padding: 5px;
+    text-align: center;
+    
+}
+iframe{
+    background-color: #333;
+}
 .frame {
     height: 100%;
-    width: 100%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid blue; */
 }
 
 .frame h1 {
@@ -37,59 +63,163 @@ nav a {
 
 .buttons{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items:center;
     justify-content: center;
+    
+}
+.button-upper{
+   display: flex;
+   align-items:center;
+   justify-content: space-between;
+}
+.button-under{
+    margin-top: 15px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
 }
 
-.console {
+ button{
+    font-size: 30px;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    margin: 0px 7px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 5px grey;
+   
+}
+.properties{
+    margin-left:50px;
+  
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-}
-.console button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background-color: #333;
-    color: white;
-    font-size: 20px;
-    margin: 0 10px;
-    cursor: pointer;
-}
-.properties button{
-    width: 100px;
-    height: 50px;
-    border-radius: 30px;
-    border: none;
-    background-color: #333;
-    color: white;
-    font-size: 20px;
-    margin: 0 10px;
-    cursor: pointer;
-}
-.properties{
-    margin-left:50px;
 }
 .button-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+
 }
 .arrow-button.red {
     background-color: red;
     color: white;
     box-shadow: 5px 3px 20px 1px black;
 }
-.arrow-button.green {
-    background-color: green;
+.arrow-button2.red{
+    background-color: red;
     color: white;
     box-shadow: 5px 3px 20px 1px black;
 }
-#brake-button{
-    border-radius: 30px;
-    width: 200px;
+.green{
+  background-color: green;
+  color: white;
+  box-shadow: 5px 3px 20px 1px black;
 }
+
+  svg:not(:last-child){
+    margin: 0 20px 20px 0;
+  }
+  
+  svg{
+    width: 300px;
+    margin-top: 5px;
+  }
+  .overview-charts svg{
+    width: 170px;
+    margin-top: 5px;
+  }
+  
+  .svgText{
+    fill:black;
+    stroke: black;
+    stroke-width: 0px;
+    user-select: none;
+    font-size: 8px;
+  }
+  
+  .gpu_name{
+    text-transform: capitalize;
+  }
+  
+  
+   .unfilled{
+      stroke: #EBEDF8;
+    } 
+  
+  .foreign{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .containerCharts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 13px;
+    font-family: 'Verdana';
+  }
+  
+  .midCharts{
+    background-color: #333;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between ;
+    margin-top: 10px;
+  }
+
+
+.circle-inner{
+  fill: transparent;
+  stroke-width: 1;
+  opacity: .3;
+  stroke: white;
+  height: 120px;
+  width: 130px;
+   
+}
+
+.overview-charts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.overview-charts-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    border-radius: 10px;
+    
+}
+
+
+
+
+
+
+text tspan{
+  font-size: 20px;
+}
+
+.circle-outer{
+    animation: load 4s cubic-bezier(0,.49,1,.37);
+}
+
+@keyframes load{
+  0%{stroke-dashoffset:439.1124572753906}}
+
+@keyframes loadArc{
+  0%{stroke-dashoffset: -342.90185546875}}
+
