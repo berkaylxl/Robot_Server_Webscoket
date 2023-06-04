@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const ejs = require('ejs');
-const bodyParser = require('body-parser');
 
 const robotRoutes = require('./routes/robot')
 
@@ -22,8 +21,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-
 app.use('/robot', robotRoutes);
 
 app.use('/',(req, res, next)=> {
@@ -43,6 +40,4 @@ app.use((err, req, res, next) => {
         }
     })
 })
-
-
 module.exports = app;

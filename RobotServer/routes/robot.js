@@ -25,4 +25,5 @@ router.get('/brakestop',RobotController.robot_brake_stop);
 router.get('/headlamp',RobotController.robot_headlamp);
 router.get('/camera',RobotController.robot_camera);
 
+router.get('/chargeValue',RobotController.send_chargeValue);
 module.exports = router;
