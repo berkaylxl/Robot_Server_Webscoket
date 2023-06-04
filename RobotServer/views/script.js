@@ -4,6 +4,7 @@ const leftbutton = document.getElementById("left-button");
 const rightbutton = document.getElementById("right-button");
 const camerabutton = document.getElementById("camera-button");
 const headlampbutton = document.getElementById("headlamp-button");
+
 let isWPressed = false;
 let isAPressed = false;
 let isSPressed = false;
@@ -12,17 +13,6 @@ let isCPressed = false;
 let isHeadLampActivated = false;
 let isLPressed = false;
 
-
-// var iframe = document.getElementById("myframe");
-// iframe.onload = function() {
-//   var divElement = iframe.contentDocument.getElementById("logo").innerHTML;
-//     if (divElement) {
-//       var divContent = divElement.innerHTML;
-//       console.log(divContent);
-//     } else {
-//         console.log("video element not found");
-//     }
-// };
 
 upbutton.addEventListener("mousedown", event => {
   isWPressed = true;
@@ -221,13 +211,14 @@ function sendCameraRequest() {
   var request = new XMLHttpRequest();
   request.open('GET', 'http://localhost:3000/robot/camera');
   request.send();
-  console.log("Camera isteği gönderiliyor...")
+ 
 }
-
-let test = document.querySelector('.charts');
+function CreateSpeedChart(speed){
+  let test = document.querySelector('.charts');
+  test.innerHTML = '';
 
 var data = [
-  { id: 5, percentage: 33, title: 'gpu 5' },
+  { id: 5, percentage: speed*10, title: 'speed' },
 ]
 
 const creatSvg = (percentage, title, svgColor) => {
@@ -238,7 +229,7 @@ const creatSvg = (percentage, title, svgColor) => {
        <foreignObject y=40% class='foreign'> 
       
            <div class="containerCharts">
-             <p class="gpu_name">${data[0].percentage}<font style="font-size:5px;"> km/h</font></p>
+             <p class="gpu_name">${speed}<font style="font-size:5px;"> km/h</font></p>
             
            </div>
        </foreignObject>
@@ -258,38 +249,32 @@ const creatSvg = (percentage, title, svgColor) => {
         stroke-dashoffset="${percentage}"
         stroke="${svgColor}"
       >  
-      <animate  attributeName="stroke-dashoffset"
-       values=" 142; ${percentage}"
-       dur="2s"
-       calcMode="linear"/> 
+      
 </path>
      </g>
- <linearGradient id="good">
-          <stop offset="0%" stop-color="#00CA9D" />
-          <stop offset='100%' stop-color="#DC143C" />
- </linearGradient>
-       
- <linearGradient id="average">
-          <stop offset="0%" stop-color="#00CA9D" />
-          <stop offset="50%" stop-color="#619B62" />
-          <stop offset='100%' stop-color="#FDB35E" />
- </linearGradient>
-       
-  <linearGradient id="danger">
-          <stop offset="0%" stop-color="#00CA9D" />
-          <stop offset="50%" stop-color="#FDB35E" />
-          <stop offset='100%' stop-color="#DC143C" />
- </linearGradient>
+     <linearGradient id="good">
+     <stop offset="0%" stop-color="#00CA9D" />
+     <stop offset="100%" stop-color="#00FF00" />
+   </linearGradient>
+   <linearGradient id="average">
+     <stop offset="0%" stop-color="#00CA9D" />
+     <stop offset="50%" stop-color="#FFFF00" />
+     <stop offset="100%" stop-color="#FFA500" />
+   </linearGradient>
+   <linearGradient id="danger">
+     <stop offset="0%" stop-color="#00CA9D" />
+     <stop offset="50%" stop-color="#FFA500" />
+     <stop offset="100%" stop-color="#FF0000" />
+   </linearGradient>
 </svg>
 `;
-  console.log(svg);
+
   // setPercentage(svg, percentage);
   test.insertAdjacentHTML('beforeend', svg);
 }
 
-
 data.map(element => {
-  console.log(element, "elementi")
+
   let { percentage, title } = element;
 
   if (percentage > 100) {
@@ -312,119 +297,154 @@ data.map(element => {
   creatSvg(elementPercent, title, svgColor);
 })
 
-//--------------------------------------------------------mid charts
-var circle = document.querySelector('.outer-circle');
-var chartContainer = document.querySelector('.overview-charts');
 
-let percentage = 50;
-let circleLength = 439.1124572753906;
-let elemPercentage = circleLength - (percentage * circleLength / 100);
-console.log(elemPercentage, 'ss');
-
-var data = [
-  { id: 1, percentage: 86, title: 'Battery' },
-  { id: 2, percentage: 70, title: 'Tempature' },
-
-]
-var svg = "";
-const creatSvg2 = (elementPercentage, title, percentageText, svgColor) => {
-
-  if (title === "Battery") {
-    svg = `
-  <div class="overview-charts-container">
-      <svg height="190" width="50">
-           <g>
-               <circle class="circle-inner"cx="80" cy="80" r="65"/>
-               <text fill="white" x="85" y="85" font-size="30" dominant-baseline="middle" text-anchor="middle">${percentageText} %</text>
-           </g>
-           <circle stroke-dasharray="439.1124572753906"
-                   stroke-dashoffset="${elementPercentage}"
-                   stroke="${svgColor}"
-                   cx="20" cy="80" r="70"
-                   stroke-width="4"
-                   fill="transparent"
-                   stroke-linecap="round"
-                   class="circle-outer"
-                   transform="rotate(-90 ) translate(-100 0)" />
-           <text class="circle-text"
-                 fill="white" 
-                 x="79" y="165" 
-                 dominant-baseline="middle" 
-                 text-anchor="middle" 
-                 font-weight="bold">${title}</text>
-        </svg>
-  </div>
-`;
-  }
-  else {
-    svg = `
-  <div class="overview-charts-container">
-      <svg height="190" width="50">
-           <g>
-               <circle class="circle-inner"cx="80" cy="80" r="65"/>
-               <text fill="white" x="85" y="85" font-size="30" dominant-baseline="middle" text-anchor="middle">${percentageText} °C</text>
-           </g>
-           <circle stroke-dasharray="439.1124572753906"
-                   stroke-dashoffset="${elementPercentage}"
-                   stroke="${svgColor}"
-                   cx="20" cy="80" r="70"
-                   stroke-width="4"
-                   fill="transparent"
-                   stroke-linecap="round"
-                   class="circle-outer"
-                   transform="rotate(-90 ) translate(-100 0)" />
-           <text class="circle-text"
-                 fill="white" 
-                 x="79" y="165" 
-                 dominant-baseline="middle" 
-                 text-anchor="middle" 
-                 font-weight="bold">${title}</text>
-        </svg>
-  </div>
-`;
-  }
-
-
-  chartContainer.insertAdjacentHTML('beforeend', svg);
 }
 
 
-data.map(element => {
-  let { percentage, title } = element;
 
+//--------------------------------------------------------mid charts
+function CreateCharts(){
+  var chargeValue ;
+  var speedValue;
+  var request = new XMLHttpRequest();
+  request.open('GET', 'http://localhost:3000/robot/chargeValue');
+  request.send();
+  request.onload = function() {
+    if (request.status === 200) {
+      var chartValue = request.responseText;
+     
+        var parsedData = JSON.parse(chartValue);   
+        chargeValue=parsedData.charge;
+        speedValue=Math.abs(parsedData.speed)
+      
 
-  let elemPercentage = circleLength - (percentage * circleLength / 100);
-  let svgColor;
+      console.log(parsedData)
 
-  if (title === "Tempature") {
-    if (percentage < 50) {
-      svgColor = '#49D490';
-    } else if (percentage >= 50 && percentage <= 60) {
-      svgColor = '#EFB93F';
-    } else if (percentage >= 61 && percentage <= 75) {
-      svgColor = '#F26739';
-    } else if (percentage >= 76) {
-      svgColor = '#FA0900';
+       CreateSpeedChart(speedValue);
+
+      var circle = document.querySelector('.outer-circle');
+      var chartContainer = document.querySelector('.overview-charts');
+      chartContainer.innerHTML = '';
+    
+      let percentage = 50;
+      let circleLength = 439.1124572753906;
+      let elemPercentage = circleLength - (percentage * circleLength / 100);
+      
+      var data = [
+        { id: 1, percentage:chargeValue , title: 'Battery' },
+        { id: 2, percentage: 70, title: 'Tempature' },
+      
+      ]
+      var svg = "";
+      const creatSvg2 = (elementPercentage, title, percentageText, svgColor) => {
+      
+        if (title === "Battery") {
+          svg = `
+        <div class="overview-charts-container">
+            <svg height="190" width="50">
+                 <g>
+                     <circle class="circle-inner"cx="80" cy="80" r="65"/>
+                     <text fill="white" x="85" y="85" font-size="30" dominant-baseline="middle" text-anchor="middle">${percentageText} %</text>
+                 </g>
+                 <circle stroke-dasharray="439.1124572753906"
+                         stroke-dashoffset="${elementPercentage}"
+                         stroke="${svgColor}"
+                         cx="20" cy="80" r="70"
+                         stroke-width="4"
+                         fill="transparent"
+                         stroke-linecap="round"
+                         class="circle-outer"
+                         transform="rotate(-90 ) translate(-100 0)" />
+                 <text class="circle-text"
+                       fill="white" 
+                       x="79" y="165" 
+                       dominant-baseline="middle" 
+                       text-anchor="middle" 
+                       font-weight="bold">${title}</text>
+              </svg>
+        </div>
+      `;
+        }
+        else {
+          svg = `
+        <div class="overview-charts-container">
+            <svg height="190" width="50">
+                 <g>
+                     <circle class="circle-inner"cx="80" cy="80" r="65"/>
+                     <text fill="white" x="85" y="85" font-size="30" dominant-baseline="middle" text-anchor="middle">${percentageText} °C</text>
+                 </g>
+                 <circle stroke-dasharray="439.1124572753906"
+                         stroke-dashoffset="${elementPercentage}"
+                         stroke="${svgColor}"
+                         cx="20" cy="80" r="70"
+                         stroke-width="4"
+                         fill="transparent"
+                         stroke-linecap="round"
+                         class="circle-outer"
+                         transform="rotate(-90 ) translate(-100 0)" />
+                 <text class="circle-text"
+                       fill="white" 
+                       x="79" y="165" 
+                       dominant-baseline="middle" 
+                       text-anchor="middle" 
+                       font-weight="bold">${title}</text>
+              </svg>
+        </div>
+      `;
+        }
+      
+      
+        chartContainer.insertAdjacentHTML('beforeend', svg);
+      }
+      
+      //Yüzdeye göre renk değişimi
+      data.map(element => {
+        let { percentage, title } = element;
+      
+      
+        let elemPercentage = circleLength - (percentage * circleLength / 100);
+        let svgColor;
+      
+        if (title === "Tempature") {
+          if (percentage < 50) {
+            svgColor = '#49D490';
+          } else if (percentage >= 50 && percentage <= 60) {
+            svgColor = '#EFB93F';
+          } else if (percentage >= 61 && percentage <= 75) {
+            svgColor = '#F26739';
+          } else if (percentage >= 76) {
+            svgColor = '#FA0900';
+          }
+      
+        }
+        else {
+          if (percentage < 20) {
+            svgColor = '#FA0900';
+          } else if (percentage >= 20 && percentage <= 30) {
+            svgColor = '#F26739';
+          } else if (percentage >= 30 && percentage <= 75) {
+            svgColor = '#49D490';
+          } else if (percentage >= 76) {
+            svgColor = '#76FA41';
+          }
+        }
+      
+        creatSvg2(elemPercentage, title, percentage, svgColor);
+      })
+      
+      
+       
+    } else {
+      console.error('İstek sırasında bir hata oluştu. Durum kodu:', request.status);
     }
-
-  }
-  else {
-    if (percentage < 20) {
-      svgColor = '#FA0900';
-    } else if (percentage >= 20 && percentage <= 30) {
-      svgColor = '#F26739';
-    } else if (percentage >= 30 && percentage <= 75) {
-      svgColor = '#49D490';
-    } else if (percentage >= 76) {
-      svgColor = '#76FA41';
-    }
-  }
-
-  creatSvg2(elemPercentage, title, percentage, svgColor);
-})
+  };
+  
 
 
 
 
+ 
+}
+setInterval(CreateCharts,100);
 
 
